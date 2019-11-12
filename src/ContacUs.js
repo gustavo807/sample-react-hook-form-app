@@ -9,11 +9,14 @@ const contactUsSchema = yup.object().shape({
             .email(),
     message: yup
                 .string()
-                .min(20)
+                .min(20),
+    address: yup
+                .string()
 })
 
 function ContactUs(){
-    const {handleSubmit, register, errors} = useForm({ validationSchema: contactUsSchema})
+    const {handleSubmit, register, errors, watch} = useForm({ validationSchema: contactUsSchema})
+    const watchAddInfo = watch("addInfo", false)
     const onSubmit = (data) => {
         console.log(data)
     }
@@ -23,6 +26,11 @@ function ContactUs(){
             <input name="email" ref={register} />
             <label>message</label>
             <input name="message" type="textarea" ref={register} />
+
+            <label>Additional Information?</label>
+            <input name="addInfo" type="checkbox" ref={register} />
+            { watchAddInfo && (<input name="address" ref={register} />)}
+
             <div style={{ color: 'red' }}>
                 <pre>{Object.keys(errors).length > 0 && <label>Errors: {JSON.stringify(errors, null, 2)}</label>}</pre>
 
