@@ -9,7 +9,13 @@ const Input = ({ label, register, options}) => (
 )
 
 function SingUp(){
-    const {register, handleSubmit, errors} = useForm()
+    let initialValues = {
+        firstname: "Joe",
+        lastname: "Doe",
+        gender: "wrong",
+        city: "New York"
+    }
+    const {register, handleSubmit, errors} = useForm({ defaultValues: initialValues})
     const onSubmit = (values) => {
         console.log(values)
     }
