@@ -17,8 +17,9 @@ const contactUsSchema = yup.object().shape({
 function ContactUs(){
     const {handleSubmit, register, errors, watch} = useForm({ validationSchema: contactUsSchema})
     const watchAddInfo = watch("addInfo", false)
-    const onSubmit = (data) => {
+    const onSubmit = (data, e) => {
         console.log(data)
+        e.target.reset() // standard reset after form submit
     }
     return(
         <form onSubmit={handleSubmit(onSubmit)}>
