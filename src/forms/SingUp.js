@@ -21,7 +21,11 @@ function SingUp(){
     }
 
     useEffect(()=>{
-        console.log('useEffect')
+        console.log('render')
+
+        return () => {
+            console.log('unmount')
+         }
     }, [])
 
     return (
